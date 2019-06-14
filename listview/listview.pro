@@ -35,6 +35,7 @@ CONFIG(debug,debug|release){
 QMLSOURCES += $$PWD/appqml/listview/main.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/PrivateBasic.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/CheckCacheArea.qml
+QMLSOURCES += $$PWD/appqml/listview/ListView/GenMoreData.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
