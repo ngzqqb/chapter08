@@ -1,11 +1,16 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import sstd.listview 1.0
 
 PrivateBasic{
 
     id : idRoot
     property int liveItemCount: 0
+
+    VeryLargeModel{
+        id : idModel
+    }
 
     ColumnLayout{
 
@@ -15,27 +20,30 @@ PrivateBasic{
             text: idRoot.liveItemCount
         }
 
-        ListView{
-
+        ScrollView{
             Layout.fillHeight: true
             Layout.fillWidth: true
+            ListView{
 
-            model: 1024 * 1024
-            delegate: Rectangle {
-                color: Qt.rgba(Math.random(),
-                               Math.random(),
-                               Math.random(),
-                               1 );
-                Component.onCompleted: {
-                    ++idRoot.liveItemCount
+                clip: true
+                anchors.fill: parent
+
+                model: idModel
+                delegate: Rectangle {
+                    color: theBackgroundColor
+                    height: 32
+                    width: ListView.view.width
+                    Component.onCompleted: {
+                        ++idRoot.liveItemCount
+                    }
+                    Component.onDestruction: {
+                        --idRoot.liveItemCount
+                    }
                 }
-                Component.onDestruction: {
-                    --idRoot.liveItemCount
-                }
+
             }
 
         }
-
     }
 
 }
