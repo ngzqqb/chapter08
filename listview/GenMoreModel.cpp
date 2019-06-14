@@ -49,16 +49,18 @@ namespace sstd {
     }
 
     void GenMoreModel::fetchMore(const QModelIndex &) {
-        if( this->getFecthState() == FetchState::Fetching ){
+        if (this->getFecthState() == FetchState::Fetching) {
             return;
         }
-        this->setFecthState( FetchState::Fetching );
+        this->setFecthState(FetchState::Fetching);
         QTimer::singleShot(1500, this, [this]() {
-            this->setFecthState( FetchState::Fectched );
             constexpr int const varFakeSize = 8;
             this->beginInsertRows(QModelIndex(), thisModelSize, thisModelSize + varFakeSize - 1);
             thisModelSize += varFakeSize;
             this->endInsertRows();
+            QTimer::singleShot(10, this, [this]() {/*过滤过于密集的事件*/
+                this->setFecthState(FetchState::Fectched);
+            });
         });
     }
 

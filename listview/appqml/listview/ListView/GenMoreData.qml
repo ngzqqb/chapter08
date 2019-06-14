@@ -13,6 +13,7 @@ PrivateBasic{
 
     ColumnLayout{
 
+        id : idColumnLayout
         anchors.fill: parent
 
         Label{
@@ -32,15 +33,18 @@ PrivateBasic{
                 width: ListView.view.width
             }
 
-            BusyIndicator{
-                id : idBusyIndicator
-                visible: idModel.fecthState === GenMoreModel.Fetching
-                running: idModel.fecthState === GenMoreModel.Fetching
-                anchors.bottom: idListView.bottom
-                anchors.horizontalCenter: idListView.horizontalCenter
-            }
-
         }
+
+    }
+
+    BusyIndicator{
+        z : idColumnLayout.z + 1
+        id : idBusyIndicator
+        visible: idModel.fecthState === GenMoreModel.Fetching
+        running: idModel.fecthState === GenMoreModel.Fetching
+        anchors.bottom: idColumnLayout.bottom
+        anchors.horizontalCenter: idColumnLayout.horizontalCenter
+        background: Item{}
     }
 
 }
