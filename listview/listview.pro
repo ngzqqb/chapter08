@@ -13,6 +13,9 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/VeryLargeModel.cpp
 HEADERS += $$PWD/VeryLargeModel.hpp
 
+SOURCES += $$PWD/GenMoreModel.cpp
+HEADERS += $$PWD/GenMoreModel.hpp
+
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
 include($$PWD/../../sstd_library/add_vc_debug_console.pri)
