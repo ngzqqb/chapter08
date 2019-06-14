@@ -10,6 +10,9 @@ CONFIG(debug,debug|release){
 
 SOURCES += $$PWD/main.cpp
 
+SOURCES += $$PWD/VeryLargeModel.cpp
+HEADERS += $$PWD/VeryLargeModel.hpp
+
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
 include($$PWD/../../sstd_library/add_vc_debug_console.pri)
@@ -31,6 +34,7 @@ CONFIG(debug,debug|release){
 
 QMLSOURCES += $$PWD/appqml/listview/main.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/PrivateBasic.qml
+QMLSOURCES += $$PWD/appqml/listview/ListView/CheckCacheArea.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
