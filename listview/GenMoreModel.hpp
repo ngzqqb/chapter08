@@ -21,6 +21,8 @@ namespace sstd {
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
+        bool canFetchMore(const QModelIndex &parent) const override;
+        void fetchMore(const QModelIndex &parent);
     private:
         int thisModelSize{ 128 };
         qint32 thisModelStamp{ 0 };

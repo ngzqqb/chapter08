@@ -19,21 +19,17 @@ PrivateBasic{
             text: idRoot.liveItemCount
         }
 
-        ScrollView{
+        ListView{
+
+            clip: true
             Layout.fillHeight: true
             Layout.fillWidth: true
-            ListView{
 
-                clip: true
-                anchors.fill: parent
-
-                model: idModel
-                delegate: Rectangle {
-                    color: theBackgroundColor
-                    height: 32
-                    width: ListView.view.width
-                }
-
+            model: idModel
+            delegate: Rectangle {
+                color: theBackgroundColor
+                height: 32
+                width: ListView.view.width
             }
 
         }

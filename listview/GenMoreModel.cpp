@@ -51,6 +51,17 @@ namespace sstd {
     GenMoreModel::GenMoreModel() {
     }
 
+    bool GenMoreModel::canFetchMore(const QModelIndex &parent) const {
+        if (parent.isValid()) {
+            return parent.row() == (thisModelSize - 1);
+        }
+        return true;
+    }
+
+    void GenMoreModel::fetchMore(const QModelIndex &) {
+        qDebug() << "jxxxxxxxxx";
+    }
+
 }/*namesapce sstd*/
 
 inline static void registerThis() {
