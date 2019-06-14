@@ -16,11 +16,11 @@ PrivateBasic{
         anchors.fill: parent
 
         Label{
-            text: idRoot.liveItemCount
+            text: idListView.count
         }
 
         ListView{
-
+            id : idListView
             clip: true
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -30,6 +30,14 @@ PrivateBasic{
                 color: theBackgroundColor
                 height: 32
                 width: ListView.view.width
+            }
+
+            BusyIndicator{
+                id : idBusyIndicator
+                visible: idModel.fecthState === GenMoreModel.Fetching
+                running: idModel.fecthState === GenMoreModel.Fetching
+                anchors.bottom: idListView.bottom
+                anchors.horizontalCenter: idListView.horizontalCenter
             }
 
         }

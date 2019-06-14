@@ -6,22 +6,12 @@ namespace sstd {
         return thisModelSize;
     }
 
-    void GenMoreModel::setModelStamp(qint32 arg) {
-        if (arg == thisModelStamp) {
+    void GenMoreModel::setFecthState(FetchState arg) {
+        if (arg == thisFetchState) {
             return;
         }
-        thisModelStamp = arg;
-        modelStampChanged();
-    }
-
-    void GenMoreModel::nextModelStamp() {
-        if (thisModelStamp == std::numeric_limits<qint32>::max()) {
-            this->setModelStamp(0);
-        } else if (thisModelStamp < 0) {
-            this->setModelStamp(0);
-        } else {
-            this->setModelStamp(thisModelStamp + 1);
-        }
+        thisFetchState = arg;
+        fecthStateChanged();
     }
 
     QVariant GenMoreModel::data(const QModelIndex &index, int role) const {
@@ -59,7 +49,17 @@ namespace sstd {
     }
 
     void GenMoreModel::fetchMore(const QModelIndex &) {
-        qDebug() << "jxxxxxxxxx";
+        if( this->getFecthState() == FetchState::Fetching ){
+            return;
+        }
+        this->setFecthState( FetchState::Fetching );
+        QTimer::singleShot(1500, this, [this]() {
+            this->setFecthState( FetchState::Fectched );
+            constexpr int const varFakeSize = 8;
+            this->beginInsertRows(QModelIndex(), thisModelSize, thisModelSize + varFakeSize - 1);
+            thisModelSize += varFakeSize;
+            this->endInsertRows();
+        });
     }
 
 }/*namesapce sstd*/
