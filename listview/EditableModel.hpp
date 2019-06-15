@@ -17,6 +17,8 @@ namespace sstd {
         bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
         QHash<int, QByteArray> roleNames() const override;
         Qt::ItemFlags flags(const QModelIndex &index) const override;
+    protected:
+        void timerEvent(QTimerEvent *event) override;
     private:
         class ItemData {
         public:
@@ -28,6 +30,7 @@ namespace sstd {
             sstd::allocator< std::shared_ptr<ItemData> > >;
         ItemsVector thisItemsVector;
         using Super = QAbstractListModel;
+        int thisTimerIndex{ 0 };
     private:
         sstd_class(EditableModel);
     };
