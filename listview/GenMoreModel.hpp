@@ -5,7 +5,7 @@ namespace sstd {
     class GenMoreModel : public QAbstractListModel {
         Q_OBJECT
     public:
-        enum FetchState{
+        enum FetchState {
             Fetching,
             Fectched,
         };
