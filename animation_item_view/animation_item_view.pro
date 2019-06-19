@@ -1,23 +1,14 @@
-# listview/listview.pro
+# animation_item_view/animation_item_view.pro
 
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = listview_debug
+    TARGET = animation_item_view_debug
 }else{
-    TARGET = listview
+    TARGET = animation_item_view
 }
 
 SOURCES += $$PWD/main.cpp
-
-SOURCES += $$PWD/VeryLargeModel.cpp
-HEADERS += $$PWD/VeryLargeModel.hpp
-
-SOURCES += $$PWD/GenMoreModel.cpp
-HEADERS += $$PWD/GenMoreModel.hpp
-
-SOURCES += $$PWD/EditableModel.cpp
-HEADERS += $$PWD/EditableModel.hpp
 
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
@@ -38,11 +29,7 @@ CONFIG(debug,debug|release){
     export(QMAKE_POST_LINK)
 }
 
-QMLSOURCES += $$PWD/appqml/listview/main.qml
-QMLSOURCES += $$PWD/appqml/listview/ListView/PrivateBasic.qml
-QMLSOURCES += $$PWD/appqml/listview/ListView/CheckCacheArea.qml
-QMLSOURCES += $$PWD/appqml/listview/ListView/GenMoreData.qml
-QMLSOURCES += $$PWD/appqml/listview/ListView/Editable.qml
+QMLSOURCES += $$PWD/appqml/animation_item_view/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
