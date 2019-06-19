@@ -7,6 +7,7 @@ namespace sstd {
     public:
         enum AllRoles : int {
             BackGroundColorRole = Qt::UserRole + 1,
+            ForeGroundColorRole,
         };
     public:
         VeryLargeModel();

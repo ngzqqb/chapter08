@@ -33,6 +33,19 @@ PrivateBasic{
                     color: theBackgroundColor
                     height: 32
                     width: ListView.view.width
+                    Text {
+                        anchors.fill: parent
+                        text: index;
+                        color: theForegroundColor;
+                        font.pixelSize: parent.height * 0.8;
+                        style: Text.Outline;
+                        horizontalAlignment : Text.AlignHCenter
+                        verticalAlignment :Text.AlignVCenter
+                        styleColor: Qt.rgba( theForegroundColor.r,
+                                             theForegroundColor.g,
+                                             theForegroundColor.b,
+                                             0.5);
+                    }
                     Component.onCompleted: {
                         ++idRoot.liveItemCount
                     }
