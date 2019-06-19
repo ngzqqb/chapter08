@@ -51,8 +51,10 @@ StyledApplicationWindow {
                 id : idListView
                 width: parent.width ;
                 height: parent.height;
-
                 focus: true;
+
+                ScrollBar.vertical: ScrollBar {
+                }
 
                 QmlFilesModel{
                     id : idTheModel ;
