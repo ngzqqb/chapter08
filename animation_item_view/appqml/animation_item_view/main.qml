@@ -2,14 +2,17 @@
 import QtQuick 2.13
 import QtQuick.Controls 2.13
 
-
 /*begin:import*/
 import theqml_the_debug.qml_files_dir_loader_module 1.0
+import theqml_the_debug.sstd.styled.app 1.0
 /*end:import*/
 
-Item{
+StyledApplicationWindow {
 
-    TabBar{
+    width: 360
+    height: 512
+
+    header: TabBar{
         id : idTabBar
         anchors.left: parent.left;
         anchors.right: parent.right;
@@ -39,28 +42,30 @@ Item{
     Flipable {
         id : idFlipable
 
-        anchors.right: parent.right;
-        anchors.left: parent.left
-        anchors.top:  idTabBar.bottom;
-        anchors.bottom: parent.bottom
-
+        anchors.fill: parent;
         property bool flipped: false ;
 
         front: Item{
             anchors.fill: parent ;
             ListView {
-
+                id : idListView
                 width: parent.width ;
                 height: parent.height;
 
                 focus: true;
 
                 QmlFilesModel{
-                    id : idTheModel
+                    id : idTheModel ;
                     qmlFilesDir : "QmlFiles";
                 }
 
-                model: idTheModel;
+                Component.onCompleted: {
+                    Qt.callLater( function(){
+                        idTheModel.modelReset();/*there is some bug ???*/
+                    } )
+                }
+
+                model: idTheModel ;
                 delegate: ItemDelegate{
                     width: parent.width;
                     text: fileName
@@ -78,9 +83,8 @@ Item{
                 populate: Transition {
                     id : idTransition
                     NumberAnimation {
-                        properties: "y";
-                        duration: idTransition.ViewTransition.index * 1000 ;
-                        to : 120
+                        properties: "x,y";
+                        duration: 800 ;
                     }
                 }
             }
@@ -120,12 +124,20 @@ Item{
 
     }
 
+    /*begin:debug*/
+    Timer{
+        interval: 1500;
+        running: true;
+        repeat: true
+        onTriggered: {
+            GlobalAppData.isDark = !GlobalAppData.isDark;
+        }
+    }
+    /*end:debug*/
+
 }
 
 /*endl_input_of_latex_for_clanguage_lick*/
 /*begin:debug*/
 /*end:debug*/
-
-// There is still a bug , I am finding a way to solve it .
-
 
