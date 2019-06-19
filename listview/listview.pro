@@ -43,6 +43,7 @@ QMLSOURCES += $$PWD/appqml/listview/ListView/PrivateBasic.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/CheckCacheArea.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/GenMoreData.qml
 QMLSOURCES += $$PWD/appqml/listview/ListView/Editable.qml
+QMLSOURCES += $$PWD/appqml/listview/ListView/PopulateListView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
