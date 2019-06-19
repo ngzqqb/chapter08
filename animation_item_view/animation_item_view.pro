@@ -30,6 +30,7 @@ CONFIG(debug,debug|release){
 }
 
 QMLSOURCES += $$PWD/appqml/animation_item_view/main.qml
+QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/Test.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

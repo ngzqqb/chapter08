@@ -3,13 +3,11 @@
 #include <sstd_qt_qml_quick_library.hpp>
 #include <optional>
 
-std::optional< QQuickView > globalView;
-
 int main(int argc, char ** argv) {
 
     sstd::QtApplication varApplication{ argc,argv };
 
-    auto & varView = globalView.emplace();
+    QQuickView varView ;
     {
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::autoLocalPath<QUrl>(
@@ -22,6 +20,8 @@ int main(int argc, char ** argv) {
             return -1;
         }
     }
+    varView.setResizeMode( varView.SizeRootObjectToView );
+    varView.resize( 360 , 512 );
     varView.show();
 
     return varApplication.exec();
