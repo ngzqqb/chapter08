@@ -1,5 +1,4 @@
-﻿
-import QtQuick 2.13
+﻿import QtQuick 2.13
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
@@ -28,7 +27,6 @@ Page {
         }
     }
 
-
     ListView{
         clip: true;
         anchors.fill: parent;
@@ -36,10 +34,13 @@ Page {
         delegate: Rectangle{
             width: parent.width ;
             height: 32 ;
+            property color randColor: Qt.rgba(0.5+0.5*Math.random(),
+                                              0.5+0.5*Math.random(),
+                                              0.0,1)
             gradient: Gradient {
                 GradientStop {
                     position: 0.0;
-                    color: "lightsteelblue"
+                    color: randColor
                 }
                 GradientStop {
                     position: 1.0;

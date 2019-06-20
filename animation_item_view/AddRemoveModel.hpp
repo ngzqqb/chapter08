@@ -20,7 +20,7 @@ namespace sstd {
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
     private:
-        int thisModelSize{32};
+        int thisModelSize{1};
     private:
         sstd_class(AddRemoveModel);
     };
