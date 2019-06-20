@@ -13,6 +13,9 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/../shared/VeryLargeModel.cpp
 HEADERS += $$PWD/../shared/VeryLargeModel.hpp
 
+SOURCES += $$PWD/AddRemoveModel.cpp
+HEADERS += $$PWD/AddRemoveModel.hpp
+
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
 include($$PWD/../../sstd_library/add_vc_debug_console.pri)
@@ -34,6 +37,7 @@ CONFIG(debug,debug|release){
 
 QMLSOURCES += $$PWD/appqml/animation_item_view/main.qml
 QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/Populate.qml
+QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/AddRemove.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

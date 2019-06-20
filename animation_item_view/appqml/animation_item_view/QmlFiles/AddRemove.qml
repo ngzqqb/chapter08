@@ -1,10 +1,11 @@
-﻿import QtQuick 2.13
+﻿
+import QtQuick 2.13
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
 import sstd.listview 1.0
 
-Page{
+Page {
 
     header: TabBar{
         TabButton{
@@ -14,6 +15,7 @@ Page{
             }
         }
     }
+
 
     ListView{
         clip: true;
@@ -31,7 +33,7 @@ Page{
             }
         }
 
-        model: VeryLargeModel{
+        model: AddRemoveModel{
             id : idListModel;
         }
 
@@ -41,6 +43,15 @@ Page{
 
     }
 
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
