@@ -87,6 +87,9 @@ PrivateBasic{
     }
 
     function updateScrollBarPosition(argValue,argLeft){
+        /*begin:debug*/
+        console.log( "updateScrollBarPosition" ) ;
+        /*end:debug*/
         var varLeftVertical = idLeft.ScrollBar.vertical;
         var varRightVertical = idRight.ScrollBar.vertical;
         var varHeight =idRight.height  ;
