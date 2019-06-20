@@ -8,21 +8,15 @@ Page {
 
     header: TabBar{
         TabButton{
-            text: qsTr("增加一个元素")
-            onClicked: {
-                idListModel.insertOneToFirst();
-            }
-        }
-        TabButton{
             text: qsTr("重新加载模型")
             onClicked: {
                 idListModel.modelReset();
             }
         }
         TabButton{
-            text: qsTr("删除一个元素")
+            text: qsTr("移动一个元素")
             onClicked: {
-                idListModel.popOneFromFirst();
+                idListModel.moveOneItem();
             }
         }
     }
@@ -36,16 +30,20 @@ Page {
             height: 32 ;
             property color randColor: "black" ;
             Component.onCompleted: {
-                var varView = ListView.view ;
-                randColor = (varView.count & 1)?
-                            Qt.rgba(0.7 ,
-                                    0.6-0.5*Math.random(),
+                randColor = (index & 1)?
+                            Qt.rgba(0.9 ,
+                                    0.3*Math.random(),
                                     0.0,
                                     1):
-                            Qt.rgba(0.7-0.5*Math.random(),
-                                    0.6 ,
-                                    0.0,
-                                    1);
+                            (index & 3)?
+                                Qt.rgba(0.0 ,
+                                        0.3*Math.random(),
+                                        0.9,
+                                        1):
+                                Qt.rgba(0.3*Math.random(),
+                                        0.9 ,
+                                        0.0,
+                                        1);
             }
             gradient: Gradient {
                 GradientStop {
@@ -59,36 +57,20 @@ Page {
             }
         }
 
-        add : Transition {
-            NumberAnimation {
-                properties: "x,y";
-                from: 100;
-                duration: 1000
-            }
-        }
-
-        remove : Transition {
-            ParallelAnimation {
-                NumberAnimation {
-                    property: "opacity";
-                    to: 0;
-                    duration: 1000
-                }
-                NumberAnimation {
-                    properties: "x,y";
-                    to: 100;
-                    duration: 1000
-                }
-            }
-        }
-
         populate : Transition {
             NumberAnimation {
                 properties: "x,y";
             }
         }
 
-        model: AddRemoveModel{
+        move : Transition {
+            NumberAnimation{
+                properties: "x,y";
+                duration: 1000
+            }
+        }
+
+        model: MoveModel{
             id : idListModel;
         }
 
