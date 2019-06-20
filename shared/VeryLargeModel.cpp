@@ -49,7 +49,6 @@ namespace sstd {
     VeryLargeModel::VeryLargeModel() {
     }
 
-
 }/*namesapce sstd*/
 
 inline static void registerThis() {
