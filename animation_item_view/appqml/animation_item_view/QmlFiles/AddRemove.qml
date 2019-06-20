@@ -34,9 +34,16 @@ Page {
         delegate: Rectangle{
             width: parent.width ;
             height: 32 ;
-            property color randColor: Qt.rgba(0.5+0.5*Math.random(),
-                                              0.5+0.5*Math.random(),
-                                              0.0,1)
+            property color randColor: "black" ;
+            Component.onCompleted: {
+                var varView = ListView.view ;
+                randColor = (varView.count & 1)?Qt.rgba(0.7 ,
+                                                        0.6-0.5*Math.random(),
+                                                        0.0,1):
+                                                 Qt.rgba(0.7-0.5*Math.random(),
+                                                         0.6 ,
+                                                         0.0,1);
+            }
             gradient: Gradient {
                 GradientStop {
                     position: 0.0;
@@ -44,17 +51,17 @@ Page {
                 }
                 GradientStop {
                     position: 1.0;
-                    color: "blue"
+                    color: Qt.lighter( randColor )
                 }
             }
         }
 
         add : Transition {
-               NumberAnimation {
-                   properties: "x,y";
-                   from: 100;
-                   duration: 1000
-               }
+            NumberAnimation {
+                properties: "x,y";
+                from: 100;
+                duration: 1000
+            }
         }
 
         remove : Transition {
