@@ -37,12 +37,15 @@ Page {
             property color randColor: "black" ;
             Component.onCompleted: {
                 var varView = ListView.view ;
-                randColor = (varView.count & 1)?Qt.rgba(0.7 ,
-                                                        0.6-0.5*Math.random(),
-                                                        0.0,1):
-                                                 Qt.rgba(0.7-0.5*Math.random(),
-                                                         0.6 ,
-                                                         0.0,1);
+                randColor = (varView.count & 1)?
+                            Qt.rgba(0.7 ,
+                                    0.6-0.5*Math.random(),
+                                    0.0,
+                                    1):
+                            Qt.rgba(0.7-0.5*Math.random(),
+                                    0.6 ,
+                                    0.0,
+                                    1);
             }
             gradient: Gradient {
                 GradientStop {
