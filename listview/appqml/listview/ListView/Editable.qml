@@ -6,7 +6,6 @@ import sstd.listview 1.0
 PrivateBasic{
 
     id : idRoot
-    property int liveItemCount: 0
 
     EditableModel {
         id : idModel
