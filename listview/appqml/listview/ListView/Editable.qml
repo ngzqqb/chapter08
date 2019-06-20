@@ -87,12 +87,12 @@ PrivateBasic{
     }
 
     function updateScrollBarPosition(argValue,argLeft){
-        /*begin:debug*/
-        console.log( "updateScrollBarPosition" ) ;
-        /*end:debug*/
         var varLeftVertical = idLeft.ScrollBar.vertical;
         var varRightVertical = idRight.ScrollBar.vertical;
-        var varHeight =idRight.height  ;
+        var varHeight = varRightVertical.height ;
+        /*begin:debug*/
+        console.log( "updateScrollBarPosition : " , varHeight ) ;
+        /*end:debug*/
         if( varHeight * Math.abs( varLeftVertical.position - varRightVertical.position ) < 0.1 ){
             return;
         }
