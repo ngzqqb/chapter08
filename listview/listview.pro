@@ -10,8 +10,8 @@ CONFIG(debug,debug|release){
 
 SOURCES += $$PWD/main.cpp
 
-SOURCES += $$PWD/VeryLargeModel.cpp
-HEADERS += $$PWD/VeryLargeModel.hpp
+SOURCES += $$PWD/../shared/VeryLargeModel.cpp
+HEADERS += $$PWD/../shared/VeryLargeModel.hpp
 
 SOURCES += $$PWD/GenMoreModel.cpp
 HEADERS += $$PWD/GenMoreModel.hpp
