@@ -6,17 +6,22 @@ import sstd.listview 1.0
 
 Page {
 
-    header: TabBar{
-        TabButton{
-            text: qsTr("重新加载模型")
-            onClicked: {
-                idListModel.modelReset();
+    header: ToolBar{
+        RowLayout {
+            anchors.fill: parent
+            ToolButton{
+                Layout.fillWidth: true
+                text: qsTr("重新加载模型")
+                onClicked: {
+                    idListModel.modelReset();
+                }
             }
-        }
-        TabButton{
-            text: qsTr("移动一个元素")
-            onClicked: {
-                idListModel.moveOneItem();
+            ToolButton{
+                Layout.fillWidth: true
+                text: qsTr("移动一个元素")
+                onClicked: {
+                    idListModel.moveOneItem();
+                }
             }
         }
     }

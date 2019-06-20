@@ -6,23 +6,29 @@ import sstd.listview 1.0
 
 Page {
 
-    header: TabBar{
-        TabButton{
-            text: qsTr("增加一个元素")
-            onClicked: {
-                idListModel.insertOneToFirst();
+    header: ToolBar{
+        RowLayout {
+            anchors.fill: parent
+            ToolButton{
+                Layout.fillWidth: true
+                text: qsTr("增加一个元素")
+                onClicked: {
+                    idListModel.insertOneToFirst();
+                }
             }
-        }
-        TabButton{
-            text: qsTr("重新加载模型")
-            onClicked: {
-                idListModel.modelReset();
+            ToolButton{
+                Layout.fillWidth: true
+                text: qsTr("重新加载模型")
+                onClicked: {
+                    idListModel.modelReset();
+                }
             }
-        }
-        TabButton{
-            text: qsTr("删除一个元素")
-            onClicked: {
-                idListModel.popOneFromFirst();
+            ToolButton{
+                Layout.fillWidth: true
+                text: qsTr("删除一个元素")
+                onClicked: {
+                    idListModel.popOneFromFirst();
+                }
             }
         }
     }
