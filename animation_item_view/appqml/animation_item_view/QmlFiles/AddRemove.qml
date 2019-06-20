@@ -9,9 +9,21 @@ Page {
 
     header: TabBar{
         TabButton{
+            text: qsTr("增加一个元素")
+            onClicked: {
+                idListModel.insertOneToFirst();
+            }
+        }
+        TabButton{
             text: qsTr("重新加载模型")
             onClicked: {
                 idListModel.modelReset();
+            }
+        }
+        TabButton{
+            text: qsTr("删除一个元素")
+            onClicked: {
+                idListModel.popOneFromFirst();
             }
         }
     }
@@ -24,7 +36,39 @@ Page {
         delegate: Rectangle{
             width: parent.width ;
             height: 32 ;
-            color: theBackgroundColor;
+            gradient: Gradient {
+                GradientStop {
+                    position: 0.0;
+                    color: "lightsteelblue"
+                }
+                GradientStop {
+                    position: 1.0;
+                    color: "blue"
+                }
+            }
+        }
+
+        add : Transition {
+               NumberAnimation {
+                   properties: "x,y";
+                   from: 100;
+                   duration: 1000
+               }
+        }
+
+        remove : Transition {
+            ParallelAnimation {
+                NumberAnimation {
+                    property: "opacity";
+                    to: 0;
+                    duration: 1000
+                }
+                NumberAnimation {
+                    properties: "x,y";
+                    to: 100;
+                    duration: 1000
+                }
+            }
         }
 
         populate : Transition {
