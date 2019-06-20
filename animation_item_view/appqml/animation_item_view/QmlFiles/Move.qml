@@ -69,9 +69,18 @@ Page {
         }
 
         move : Transition {
+            id : idMoveTransition
             NumberAnimation{
+                id : idMoveAnimation
                 properties: "x,y";
                 duration: 1000
+            }
+            onRunningChanged: {
+                if(running){
+                    ViewTransition.item.z = 100 ;
+                }else{
+                    ViewTransition.item.z = 1   ;
+                }
             }
         }
 
