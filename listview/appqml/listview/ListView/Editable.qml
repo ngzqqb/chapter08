@@ -35,6 +35,7 @@ PrivateBasic{
                        readOnly: false
                        width: parent.width
                        text: theShowText;
+                       placeholderText: qsTr("读写")
                        onEditingFinished: {
                            theShowText = text ;
                        }
@@ -71,6 +72,7 @@ PrivateBasic{
                         readOnly: true
                         width: parent.width
                         text: theShowText;
+                        placeholderText: qsTr("只读")
                     }
                 }
 
