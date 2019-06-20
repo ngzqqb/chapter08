@@ -42,6 +42,7 @@ QMLSOURCES += $$PWD/appqml/animation_item_view/main.qml
 QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/Populate.qml
 QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/AddRemove.qml
 QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/Move.qml
+QMLSOURCES += $$PWD/appqml/animation_item_view/QmlFiles/Displaced.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
