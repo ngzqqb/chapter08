@@ -36,11 +36,7 @@ PrivateBasic{
                         width: parent.width
                         text: theShowText;
                         onEditingFinished: {
-                            if( theShowText === text ){
-                                return;
-                            }
                             theShowText = text ;
-                            text = Qt.binding( function(){ return model.theShowText ; } )
                         }
                     }
 
