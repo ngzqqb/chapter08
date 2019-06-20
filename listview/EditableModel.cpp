@@ -63,26 +63,7 @@ namespace sstd {
         for (auto & varI : thisItemsVector) {
             varI = sstd_make_shared<ItemData>();
         }
-        thisTimerIndex = this->startTimer(2500ms);
     }
-
-    void EditableModel::timerEvent(QTimerEvent *event) {
-        if (event->timerId() == thisTimerIndex) {
-            const auto varCount = this->rowCount();
-            for (int varI = 0; varI < varCount; ++varI) {
-                auto varText = thisItemsVector[static_cast<std::size_t>(varI)]->text;
-                if (varText.indexOf(QStringLiteral("测试数据")) < 0) {
-                    varText = QStringLiteral("测试数据") + varText;
-                }
-                this->setData(this->index(varI),
-                    std::move(varText),
-                    ShowTextRole);
-            }
-        } else {
-            Super::timerEvent(event);
-        }
-    }
-
 
 }/*namesapce sstd*/
 
