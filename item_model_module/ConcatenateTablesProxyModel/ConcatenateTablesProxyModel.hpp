@@ -6,11 +6,11 @@ namespace sstd {
 
     class ConcatenateTablesProxyModel:public QConcatenateTablesProxyModel{
         Q_OBJECT
+
     private:
         sstd_class(ConcatenateTablesProxyModel);
     };
 
 
+
 }/*namespace sstd*/
-
-
