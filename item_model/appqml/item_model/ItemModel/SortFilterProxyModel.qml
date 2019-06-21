@@ -12,13 +12,27 @@ PrivateBasic{
     }
 
     SortFilterProxyModel{
+        id : idSortModel
+        theModel : idModel
     }
 
     ScrollView{
         anchors.fill: parent;
         TableView{
             id : idTableView
-            model: idModel ;
+            model: idSortModel ;
+            Component.onCompleted: {
+                Qt.callLater(function(){
+                    idSortModel.lessThanFunction = function(argLR,argLC,argRR,argRC){
+                        var varLeftIndex = idModel.index(argLR,argLC);
+                        var varRightIndex = idModel.index(argRR,argRC);
+                        var varLeftValue = idModel.data(varLeftIndex , KnowSortFilterModel.Key1 ) ;
+                        var varRightValue = idModel.data(varRightIndex , KnowSortFilterModel.Key1 ) ;
+                        return varLeftValue > varRightValue;
+                    }
+                    idSortModel.sort(0)
+                })
+            }
             columnWidthProvider:function(){
                 return width/columns ;
             }

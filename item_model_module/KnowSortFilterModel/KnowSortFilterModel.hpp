@@ -12,6 +12,7 @@ namespace sstd {
             Key2,
             Key3
         };
+        Q_ENUM(TheRoles)
     protected:
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;

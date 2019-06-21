@@ -16,6 +16,8 @@ namespace sstd {
         Q_INVOKABLE inline void clearLessThanFunction();
         Q_SIGNAL void lessThanFunctionChanged();
     public:
+        Q_INVOKABLE void sort(int);
+    public:
         inline QAbstractItemModel *getTheModel() const;
         inline void setTheModel(QAbstractItemModel *);
         Q_SIGNAL void theModelChanged();
@@ -23,6 +25,7 @@ namespace sstd {
         bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
     private:
         std::optional< QJSValue > thisLessThanFunction;
+        using Super = QSortFilterProxyModel;
     private:
         sstd_class(SortFilterProxyModel);
     };

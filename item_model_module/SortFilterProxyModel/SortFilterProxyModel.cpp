@@ -15,8 +15,11 @@ namespace sstd {
             }
         }
         thisLessThanFunction.emplace(arg);
-        this->layoutChanged();
         lessThanFunctionChanged();
+    }
+
+    void The::sort(int arg){
+        Super::sort(arg);
     }
 
     bool The::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const {
@@ -36,7 +39,7 @@ namespace sstd {
                 qWarning() << varAns.toString();
             }
         }
-        return true;
+        return false;
     }
 
 }/*namespace sstd*/
