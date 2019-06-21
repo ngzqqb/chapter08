@@ -19,7 +19,7 @@ namespace sstd {
     }
 
     int The::rowCount(const QModelIndex &) const {
-        return 1024;
+        return thisCount;
     }
 
     QVariant The::data(const QModelIndex &, int role) const {
