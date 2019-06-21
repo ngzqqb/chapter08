@@ -31,6 +31,11 @@ CONFIG(debug,debug|release){
 
 QMLSOURCES += $$PWD/appqml/item_model/main.qml
 QMLSOURCES += $$PWD/appqml/item_model/ItemModel/PrivateBasic.qml
+QMLSOURCES += $$PWD/appqml/item_model/ItemModel/ConcatenateTablesProxyModelView.qml
+QMLSOURCES += $$PWD/appqml/item_model/ItemModel/IdentityProxyModelView.qml
+QMLSOURCES += $$PWD/appqml/item_model/ItemModel/SortFilterProxyModel.qml
+QMLSOURCES += $$PWD/appqml/item_model/ItemModel/TransposeProxyModelView.qml
+QMLSOURCES += $$PWD/appqml/item_model/ItemModel/ItemSelectionModelView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

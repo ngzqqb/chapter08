@@ -10,7 +10,7 @@ import theqml_the_debug.qml_files_dir_loader_module 1.0
 StyledApplicationWindow {
 
     width: 360 ;
-    height: 64 ;
+    height: 512 ;
     id : idRoot ;
 
     QmlFilesDirLoader{
