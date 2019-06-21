@@ -1,13 +1,3 @@
 ﻿#include "TransposeProxyModel.hpp"
 
 
-
-
-
-
-
-
-
-
-
-
