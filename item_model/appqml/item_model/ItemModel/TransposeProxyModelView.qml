@@ -9,18 +9,25 @@ PrivateBasic{
 
     KnowTableModel{
         id: idTableModel
+        theColumnSize: 8
+        theRowSize: 8
+    }
+
+    TransposeProxyModel{
+        theModel: idTableModel
+        id : idTransposeProxyModel
     }
 
     ScrollView{
         anchors.fill: parent;
         TableView{
             id : idTableView
-            model: idTableModel;
+            model: idTransposeProxyModel;
             columnWidthProvider:function(){
                 return width/columns ;
             }
             rowHeightProvider: function(){
-                return 32
+                return height/rows;
             }
             onWidthChanged: {
                 if(columns>0){
