@@ -10,6 +10,7 @@
 #include "TransposeProxyModel/TransposeProxyModel.hpp"
 #include "KnowListModel/KnowListModel.hpp"
 #include "KnowTableModel/KnowTableModel.hpp"
+#include "KnowSortFilterModel/KnowSortFilterModel.hpp"
 
 void sstd::TheMoudle::registerTypes(const char * argURI) {
     qmlRegisterType<Empty>(argURI, 1, 0, "Empty");
@@ -20,6 +21,7 @@ void sstd::TheMoudle::registerTypes(const char * argURI) {
     qmlRegisterType<TransposeProxyModel>(argURI, 1, 0, "TransposeProxyModel");
     qmlRegisterType<KnowListModel>(argURI, 1, 0, "KnowListModel");
     qmlRegisterType<KnowTableModel>(argURI,1,0,"KnowTableModel");
+    qmlRegisterType<KnowSortFilterModel>(argURI,1,0,"KnowSortFilterModel");
     qmlProtectModule(argURI, 1);
 }
 
