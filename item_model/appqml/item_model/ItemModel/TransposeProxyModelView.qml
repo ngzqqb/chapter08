@@ -29,13 +29,15 @@ PrivateBasic{
             rowHeightProvider: function(){
                 return height/rows;
             }
-            onWidthChanged: {
+            function fitTableSize(){
                 if(columns>0){
                     if(rows>0){
                         forceLayout() ;
                     }
                 }
             }
+            onWidthChanged: fitTableSize();
+            onHeightChanged: fitTableSize();
             delegate: Rectangle{
                 border.color: "black"
                 border.width: 1
