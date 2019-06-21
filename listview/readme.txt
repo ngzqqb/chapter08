@@ -5,7 +5,7 @@ QSortFilterProxyModel
 QTransposeProxyModel
 QConcatenateTablesProxyModel
 
-
+QItemSelectionModel
 
 
 
