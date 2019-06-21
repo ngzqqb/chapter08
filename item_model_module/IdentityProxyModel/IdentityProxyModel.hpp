@@ -40,6 +40,7 @@ namespace sstd {
         if( arg == sourceModel() ){
             return;
         }
+        assert( nullptr == sourceModel() );
         this->setSourceModel(arg);
         theModelChanged();
     }

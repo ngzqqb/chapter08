@@ -7,18 +7,46 @@ import theqml_the_debug.item_model_module 1.0
 
 PrivateBasic{
 
+     KnowListModel{
+         id : idListModel
+     }
 
+     IdentityProxyModel{
+         id : idIdentityProxyModel
+         theModel : idListModel
+         theAttachedText:qsTr("from proxy model")
+     }
 
+     Timer{
+         interval: 1500;
+         running: true;
+         repeat: true
+         onTriggered: {
+             if(idIdentityProxyModel.theAttachedText === qsTr("from proxy model")){
+                idIdentityProxyModel.theAttachedText = qsTr("update from proxy model");
+             }else{
+                idIdentityProxyModel.theAttachedText = qsTr("from proxy model");
+             }
+         }
+     }
 
     ScrollView{
-
-        anchors.fill: parent;
-
+        anchors.fill: parent ;
         ListView{
+            delegate: Rectangle {
+                color: theBackgroundColor
+                height: 32
+                width: parent.width
+                Text {
+                    anchors.centerIn: parent;
+                    text: theAttachedText
+                    color: theForegroundColor
+                    font.bold: true
+                }
+            }
+            model: idIdentityProxyModel
         }
-
     }
-
 
 }
 
