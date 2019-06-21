@@ -4,6 +4,11 @@
 
 namespace sstd {
 
+class ConcatenateTablesProxyModel:public QObject{
+    Q_OBJECT
+};
+
+
 }/*namespace sstd*/
 
 
