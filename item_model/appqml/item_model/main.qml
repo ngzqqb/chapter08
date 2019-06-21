@@ -4,6 +4,7 @@ import QtQuick.Controls 2.13
 
 /*begin:import*/
 import theqml_the_debug.sstd.styled.app 1.0
+import theqml_the_debug.item_model_module 1.0
 import theqml_the_debug.qml_files_dir_loader_module 1.0
 /*end:import*/
 
