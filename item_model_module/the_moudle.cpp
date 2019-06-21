@@ -16,6 +16,7 @@ void sstd::TheMoudle::registerTypes(const char * argURI) {
     qmlRegisterType<ItemSelectionModel>(argURI, 1, 0, "ItemSelectionModel");
     qmlRegisterType<SortFilterProxyModel>(argURI, 1, 0, "SortFilterProxyModel");
     qmlRegisterType<TransposeProxyModel>(argURI, 1, 0, "TransposeProxyModel");
+    qmlProtectModule(argURI, 1);
 }
 
 /*endl_input_of_latex_for_clanguage_lick*/
