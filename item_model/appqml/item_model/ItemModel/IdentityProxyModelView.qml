@@ -9,6 +9,7 @@ PrivateBasic{
 
      KnowListModel{
          id : idListModel
+         theCount: 1024;
      }
 
      IdentityProxyModel{

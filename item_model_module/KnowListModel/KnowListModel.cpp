@@ -5,6 +5,19 @@ namespace sstd {
 
     using The = KnowListModel;
 
+    void The::setTheCount(const int & arg){
+        if(arg==thisCount){
+            return;
+        }
+        if( arg<0 ){
+            qWarning() << __func__ << "less than zero : " << arg;
+            return;
+        }
+        thisCount = arg;
+        this->modelReset({});
+        theCountChanged();
+    }
+
     int The::rowCount(const QModelIndex &) const {
         return 1024;
     }

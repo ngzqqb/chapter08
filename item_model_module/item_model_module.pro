@@ -34,6 +34,9 @@ HEADERS += $$PWD/IdentityProxyModel/IdentityProxyModel.hpp
 SOURCES += $$PWD/KnowListModel/KnowListModel.cpp
 HEADERS += $$PWD/KnowListModel/KnowListModel.hpp
 
+SOURCES += $$PWD/KnowTableModel/KnowTableModel.cpp
+HEADERS += $$PWD/KnowTableModel/KnowTableModel.hpp
+
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
 
