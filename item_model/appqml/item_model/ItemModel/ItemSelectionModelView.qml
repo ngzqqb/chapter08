@@ -16,6 +16,21 @@ PrivateBasic{
     ItemSelectionModel{
         model: idModel
         id : idSelectModel
+        function forceSelectCurrentIndex(){
+            if(idSelectModel.isSelected( idModel.index(idListView.currentIndex,0) ) ){
+              return;
+            }
+            idSelectModel.select(idModel.index(idListView.currentIndex,0) ,
+                                 ItemSelectionModel.Select );
+        }
+        onSelectionChanged: {
+             forceSelectCurrentIndex();
+        }
+        Component.onCompleted: {
+            forceSelectCurrentIndex();
+            console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+            console.log( idSelectModel )
+        }
     }
 
     ScrollView{
@@ -23,27 +38,50 @@ PrivateBasic{
         ListView{
             id : idListView
             highlightRangeMode : ListView.StrictlyEnforceRange
-
-            onCurrentIndexChanged:{
-                idSelectModel.setCurrentIndex( idModel.index(currentIndex,0) ,
-                                              ItemSelectionModel.SelectCurrent)
-            }
+            highlightFollowsCurrentItem :false
 
             delegate  : MouseArea{
                 width: parent.width
                 height: 32
 
                 onClicked: {
-                    idListView.currentIndex = index;
+                    if(mouse.modifiers & Qt.ShiftModifier){
+                          if( idListView.currentIndex == index ){
+                              idBackGround.selectThis();
+                              return;
+                          }
+                         // idSelectModel.select( ,ItemSelectionModel.ClearAndSelect );
+                    }else if(mouse.modifiers & Qt.ControlModifier ){
+                          idBackGround.addOrRemoveSelect();
+                    }else {
+                        idListView.currentIndex = index;
+                        idBackGround.selectThis();
+                    }
                 }
 
                 Rectangle{
                     id : idBackGround;
                     anchors.fill: parent;
-                    property bool isSelect :  checkIsSelect() ;
+                    property bool isSelect : checkIsSelect() ;
+
+                    function addOrRemoveSelect(){
+                        if(checkIsSelect()){
+                            idSelectModel.select(idModel.index(index,0) ,
+                                                 ItemSelectionModel.Deselect );
+                        }else{
+                            idSelectModel.select(idModel.index(index,0) ,
+                                                 ItemSelectionModel.Select );
+                        }
+                    }
+
+                    function selectThis(){
+                        idSelectModel.setCurrentIndex(idModel.index(index,0) ,
+                                                      ItemSelectionModel.ClearAndSelect)
+                    }
 
                     function checkIsSelect(){
-                        return true;
+                        var varIndex = idModel.index(index,0);
+                        return idSelectModel.isSelected(varIndex)
                     }
 
                     Connections{
@@ -57,7 +95,7 @@ PrivateBasic{
                         width: parent.width
                         height: parent.height ;
                         color: "transparent"
-                        border.color: "black"
+                        border.color: idBackGround.isSelect?"lightblue":"black"
                         border.width: 3 ;
                     }
 
