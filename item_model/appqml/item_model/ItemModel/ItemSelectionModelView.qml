@@ -127,6 +127,12 @@ PrivateBasic{
                         }
                     }
 
+                    Text {
+                        text: index
+                        color: "blue"
+                        anchors.centerIn: parent
+                    }
+
                     Rectangle{
                         width: parent.width
                         height: parent.height ;
@@ -137,6 +143,7 @@ PrivateBasic{
 
                 }
             }
+
             model: idModel
 
             MouseArea{
@@ -149,7 +156,25 @@ PrivateBasic{
                 }
                 drag.target: idNeverUsedRectangle
                 drag.axis : Drag.XAndYAxis
-                property bool isPressedAndMove: false
+                property bool isPressedAndMove: false ;
+                Timer{
+                    interval : 100
+                    repeat : true
+                    running : idDragMouseArea.isPressedAndMove
+                    triggeredOnStart :false
+                    onTriggered: {
+                        var varMouseY = idDragMouseArea.mouseY;
+                        if( varMouseY < 0 ){
+                            idListView.flick(0, 320);
+                            return;
+                        }else  if( varMouseY > idListView.height ){
+                            idListView.flick(0,-320);
+                            return;
+                        }
+                        idListView.cancelFlick();
+                    }
+
+                }
                 onPositionChanged: {
                     mouse.accepted = false
                     if( pressed ){
