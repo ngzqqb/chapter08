@@ -1,2 +1,1 @@
 ﻿#include "ItemSelectionModel.hpp"
-

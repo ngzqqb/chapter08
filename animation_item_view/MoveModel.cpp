@@ -35,4 +35,3 @@ inline static void registerThis() {
 }
 
 Q_COREAPP_STARTUP_FUNCTION(registerThis)
-

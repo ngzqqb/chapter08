@@ -42,22 +42,3 @@ namespace sstd{
     }
 
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

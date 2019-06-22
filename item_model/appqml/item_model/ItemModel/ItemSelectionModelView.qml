@@ -8,4 +8,3 @@ import theqml_the_debug.item_model_module 1.0
 PrivateBasic{
 
 }
-

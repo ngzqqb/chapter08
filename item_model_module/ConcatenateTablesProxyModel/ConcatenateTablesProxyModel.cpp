@@ -10,6 +10,3 @@ void sstd::ConcatenateTablesProxyModel::addSourceModel(QAbstractItemModel *sourc
 QHash<int, QByteArray> sstd::ConcatenateTablesProxyModel::roleNames() const {
     return thisRoleNames;
 }
-
-
-

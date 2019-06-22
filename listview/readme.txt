@@ -6,7 +6,3 @@ QTransposeProxyModel
 QConcatenateTablesProxyModel
 
 QItemSelectionModel
-
-
-
-
