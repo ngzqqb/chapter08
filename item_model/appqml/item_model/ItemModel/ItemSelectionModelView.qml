@@ -50,11 +50,11 @@ PrivateBasic{
                           if( index < idListView.currentIndex ){
                               idSelectModel.selectRangePair(idModel.index(index,0) ,
                                                             idModel.index(idListView.currentIndex,0) ,
-                                                            ItemSelectionModel.Select );
+                                                            ItemSelectionModel.ClearAndSelect );
                           }else{
                               idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
                                                             idModel.index(index,0) ,
-                                                            ItemSelectionModel.Select );
+                                                            ItemSelectionModel.ClearAndSelect );
                           }
                     }else if(mouse.modifiers & Qt.ControlModifier ){
                           idBackGround.addOrRemoveSelect();
