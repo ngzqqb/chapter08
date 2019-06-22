@@ -173,7 +173,12 @@ PrivateBasic{
                         }
                         idListView.cancelFlick();
                     }
-
+                    onRunningChanged: {
+                        if(running){
+                            return;
+                        }
+                        idListView.cancelFlick();
+                    }
                 }
                 onPositionChanged: {
                     mouse.accepted = false
@@ -193,7 +198,7 @@ PrivateBasic{
                 onReleased: {
                     mouse.accepted = false
                     isPressedAndMove = false;
-                    idMaskRectangle.visible=false
+                    idMaskRectangle.visible=false;
                 }
                 id : idDragMouseArea
             }
