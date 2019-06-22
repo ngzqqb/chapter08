@@ -15,12 +15,21 @@ PrivateBasic{
     ItemSelectionModel{
         model: idModel
         id : idSelectModel
+        property bool isForceSelectCurrentIndex: false
         function forceSelectCurrentIndex(){
-            if(idSelectModel.isSelected( idModel.index(idListView.currentIndex,0) ) ){
-              return;
+            if(isForceSelectCurrentIndex){
+                return;
             }
-            idSelectModel.select(idModel.index(idListView.currentIndex,0) ,
-                                 ItemSelectionModel.Select );
+            try{
+                isForceSelectCurrentIndex=true;
+                if(idSelectModel.isSelected( idModel.index(idListView.currentIndex,0) ) ){
+                    return;
+                }
+                idSelectModel.select(idModel.index(idListView.currentIndex,0) ,
+                                     ItemSelectionModel.Select );
+            }finally{
+                isForceSelectCurrentIndex=false;
+            }
         }
         onSelectionChanged: {
              forceSelectCurrentIndex();
@@ -38,8 +47,19 @@ PrivateBasic{
             highlightFollowsCurrentItem :false
             focus: true
             onCurrentIndexChanged:{
-                idSelectModel.select(idModel.index(currentIndex,0) ,
-                                     ItemSelectionModel.ClearAndSelect);
+                idSelectModel.select(idModel.index(idListView.currentIndex,0) ,
+                                     ItemSelectionModel.ClearAndSelect );
+            }
+            function viewAtCurrentIndex(){
+                 positionViewAtIndex(currentIndex ,ListView.Contain)
+            }
+            Keys.onUpPressed: {
+                event.accepted = false;
+                Qt.callLater(viewAtCurrentIndex)
+            }
+            Keys.onDownPressed: {
+                event.accepted = false;
+                Qt.callLater(viewAtCurrentIndex)
             }
             delegate  : MouseArea{
                 width: parent.width
@@ -96,7 +116,7 @@ PrivateBasic{
                     Connections{
                         target: idSelectModel
                         onSelectionChanged:{
-                            idBackGround.isSelect = idBackGround.checkIsSelect();
+                            idBackGround.isSelect = idBackGround.checkIsSelect() ;
                         }
                     }
 
