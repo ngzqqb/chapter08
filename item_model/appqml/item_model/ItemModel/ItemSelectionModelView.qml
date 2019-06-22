@@ -164,6 +164,7 @@ PrivateBasic{
                     triggeredOnStart :false
                     onTriggered: {
                         var varMouseY = idDragMouseArea.mouseY;
+                        idDragMouseArea.selectByArea();
                         if( varMouseY < 0 ){
                             idListView.flick(0, 320);
                             return;
@@ -180,6 +181,24 @@ PrivateBasic{
                         idListView.cancelFlick();
                     }
                 }
+                function selectByArea(){
+                    var varMouseY = idDragMouseArea.mouseY;
+                    var varAppY  = 1;
+                    if( varMouseY < 1.5 ){
+                        varAppY = 1.5 ;
+                    } else if( varMouseY > idListView.height ){
+                        varAppY = idListView.height - 1.5
+                    }
+                    var varMouseIndex = idListView.indexAt( 1.5 , varAppY );
+                    if( varMouseIndex < 0 ){
+                        if( varMouseY < 0 ){
+                            varMouseIndex = 0;
+                        }else{
+                            varMouseIndex = idListView.count > 1?idListView.count:0;
+                        }
+                    }
+                    console.log( varMouseIndex )
+                }
                 onPositionChanged: {
                     mouse.accepted = false
                     if( pressed ){
@@ -187,7 +206,8 @@ PrivateBasic{
                             isPressedAndMove = true;
                             idMaskRectangle.dragStargY=mouse.y
                             idMaskRectangle.dragStartX=mouse.x
-                            idMaskRectangle.visible=true
+                            idMaskRectangle.visible=true;
+                            idDragMouseArea.selectByArea();
                         }
                         idMaskRectangle.x = Math.min( mouse.x , idMaskRectangle.dragStartX)
                         idMaskRectangle.y = Math.min( mouse.y ,idMaskRectangle.dragStargY )
