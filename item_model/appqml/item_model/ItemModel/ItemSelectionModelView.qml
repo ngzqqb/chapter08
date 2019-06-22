@@ -181,24 +181,50 @@ PrivateBasic{
                         idListView.cancelFlick();
                     }
                 }
+
                 function selectByArea(){
                     var varMouseY = idDragMouseArea.mouseY;
-                    var varAppY  = 1;
+                    var varAppY  = varMouseY;
                     if( varMouseY < 1.5 ){
                         varAppY = 1.5 ;
                     } else if( varMouseY > idListView.height ){
                         varAppY = idListView.height - 1.5
                     }
+                    var varContentItem = idListView.contentItem;
+                    varAppY = idDragMouseArea.mapToItem(varContentItem,1.5,varAppY).y;
                     var varMouseIndex = idListView.indexAt( 1.5 , varAppY );
                     if( varMouseIndex < 0 ){
                         if( varMouseY < 0 ){
                             varMouseIndex = 0;
                         }else{
-                            varMouseIndex = idListView.count > 1?idListView.count:0;
+                            varMouseIndex = idListView.count > 1?(idListView.count-1):0;
                         }
                     }
-                    console.log( varMouseIndex )
+                    if(varMouseIndex>idListView.currentIndex){
+                        idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
+                                                      idModel.index(varMouseIndex,0) ,
+                                                      ItemSelectionModel.ClearAndSelect );
+                    }else{
+                        idSelectModel.selectRangePair(idModel.index(varMouseIndex,0) ,
+                                                      idModel.index(idListView.currentIndex,0),
+                                                      ItemSelectionModel.ClearAndSelect );
+                    }
                 }
+
+                function selectMouseCurrent(argX,argY){
+                    var varContentItem = idListView.contentItem;
+                    var varAppY = idDragMouseArea.mapToItem(varContentItem,argX,argY).y;
+                    var varMouseIndex = idListView.indexAt( 1.5 , varAppY );
+                    if( varMouseIndex < 0 ){
+                        if( argY < 0 ){
+                            varMouseIndex = 0;
+                        }else{
+                            varMouseIndex = idListView.count > 1?(idListView.count-1):0;
+                        }
+                    }
+                    idListView.currentIndex = varMouseIndex;
+                }
+
                 onPositionChanged: {
                     mouse.accepted = false
                     if( pressed ){
@@ -207,7 +233,7 @@ PrivateBasic{
                             idMaskRectangle.dragStargY=mouse.y
                             idMaskRectangle.dragStartX=mouse.x
                             idMaskRectangle.visible=true;
-                            idDragMouseArea.selectByArea();
+                            idDragMouseArea.selectMouseCurrent(mouse.x,mouse.y);
                         }
                         idMaskRectangle.x = Math.min( mouse.x , idMaskRectangle.dragStartX)
                         idMaskRectangle.y = Math.min( mouse.y ,idMaskRectangle.dragStargY )
