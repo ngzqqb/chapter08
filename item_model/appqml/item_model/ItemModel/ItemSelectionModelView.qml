@@ -14,30 +14,105 @@ PrivateBasic{
 
     ItemSelectionModel{
         model: idModel
+        id : idSelectModel
+        function forceSelectCurrentIndex(){
+            if(idSelectModel.isSelected( idModel.index(idListView.currentIndex,0) ) ){
+              return;
+            }
+            idSelectModel.select(idModel.index(idListView.currentIndex,0) ,
+                                 ItemSelectionModel.Select );
+        }
+        onSelectionChanged: {
+             forceSelectCurrentIndex();
+        }
+        Component.onCompleted: {
+            forceSelectCurrentIndex();
+        }
     }
 
-   ScrollView{
-       anchors.fill: parent
-       ListView{
-           model: idModel
-           id : idListView
-           delegate: Rectangle{
-               width: parent.width
-               height: 32
-               border.color:  idListView.currentIndex === index ? "blue" : "black"
-               border.width: 3 ;
-               Text {
-                   anchors.centerIn: parent
-                   text: index
-               }
-               MouseArea{
-                   anchors.fill: parent
-                   onClicked: {
-                       idListView.currentIndex = index;
-                   }
-               }
-           }
-       }
-   }
+    ScrollView{
+        anchors.fill: parent ;
+        focus: true
+        ListView{
+            id : idListView
+            highlightFollowsCurrentItem :false
+            focus: true
+            onCurrentIndexChanged:{
+                idSelectModel.select(idModel.index(currentIndex,0) ,
+                                     ItemSelectionModel.ClearAndSelect);
+            }
+            delegate  : MouseArea{
+                width: parent.width
+                height: 32
+
+                onClicked: {
+                    if(mouse.modifiers & Qt.ShiftModifier){
+                          if( idListView.currentIndex === index ){
+                              idBackGround.selectThis();
+                              return;
+                          }
+                          if( index < idListView.currentIndex ){
+                              idSelectModel.selectRangePair(idModel.index(index,0) ,
+                                                            idModel.index(idListView.currentIndex,0) ,
+                                                            ItemSelectionModel.ClearAndSelect );
+                          }else{
+                              idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
+                                                            idModel.index(index,0) ,
+                                                            ItemSelectionModel.ClearAndSelect );
+                          }
+                    }else if(mouse.modifiers & Qt.ControlModifier ){
+                          idBackGround.addOrRemoveSelect();
+                    }else {
+                        idListView.currentIndex = index;
+                        idBackGround.selectThis();
+                    }
+                }
+
+                Rectangle{
+                    id : idBackGround;
+                    anchors.fill: parent;
+                    property bool isSelect : checkIsSelect() ;
+
+                    function addOrRemoveSelect(){
+                        if(checkIsSelect()){
+                            idSelectModel.select(idModel.index(index,0) ,
+                                                 ItemSelectionModel.Deselect );
+                        }else{
+                            idSelectModel.select(idModel.index(index,0) ,
+                                                 ItemSelectionModel.Select );
+                        }
+                    }
+
+                    function selectThis(){
+                        idSelectModel.setCurrentIndex(idModel.index(index,0) ,
+                                                      ItemSelectionModel.ClearAndSelect)
+                    }
+
+                    function checkIsSelect(){
+                        var varIndex = idModel.index(index,0);
+                        return idSelectModel.isSelected(varIndex)
+                    }
+
+                    Connections{
+                        target: idSelectModel
+                        onSelectionChanged:{
+                            idBackGround.isSelect = idBackGround.checkIsSelect();
+                        }
+                    }
+
+                    Rectangle{
+                        width: parent.width
+                        height: parent.height ;
+                        color: "transparent"
+                        border.color: idBackGround.isSelect?"lightblue":"black"
+                        border.width: 3 ;
+                    }
+
+                }
+            }
+            model: idModel
+        }
+
+    }
 
 }
