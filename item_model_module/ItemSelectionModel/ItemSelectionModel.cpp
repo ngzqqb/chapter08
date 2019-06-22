@@ -1,13 +1,13 @@
-#include "ItemSelectionModel.hpp"
+﻿#include "ItemSelectionModel.hpp"
 
 namespace sstd {
 
     using The = ItemSelectionModel;
 
-    void The::selectRowRange(const QModelIndex& arg0,
+    void The::selectRangePair(const QModelIndex& arg0,
         const QModelIndex & arg1,
         QItemSelectionModel::SelectionFlags arg2) {
-        this->select({ arg0,arg1 }, arg2);
+        this->select(QItemSelection( arg0,arg1 ), arg2);
     }
 
 }

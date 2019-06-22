@@ -27,8 +27,6 @@ PrivateBasic{
         }
         Component.onCompleted: {
             forceSelectCurrentIndex();
-            console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-            console.log( idSelectModel )
         }
     }
 
@@ -45,11 +43,19 @@ PrivateBasic{
 
                 onClicked: {
                     if(mouse.modifiers & Qt.ShiftModifier){
-                          if( idListView.currentIndex == index ){
+                          if( idListView.currentIndex === index ){
                               idBackGround.selectThis();
                               return;
                           }
-                         // idSelectModel.select( ,ItemSelectionModel.ClearAndSelect );
+                          if( index < idListView.currentIndex ){
+                              idSelectModel.selectRangePair(idModel.index(index,0) ,
+                                                            idModel.index(idListView.currentIndex,0) ,
+                                                            ItemSelectionModel.Select );
+                          }else{
+                              idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
+                                                            idModel.index(index,0) ,
+                                                            ItemSelectionModel.Select );
+                          }
                     }else if(mouse.modifiers & Qt.ControlModifier ){
                           idBackGround.addOrRemoveSelect();
                     }else {

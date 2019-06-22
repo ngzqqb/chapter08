@@ -10,6 +10,7 @@
 #include "KnowListModel/KnowListModel.hpp"
 #include "KnowTableModel/KnowTableModel.hpp"
 #include "KnowSortFilterModel/KnowSortFilterModel.hpp"
+#include "ItemSelectionModel/ItemSelectionModel.hpp"
 
 void sstd::TheMoudle::registerTypes(const char * argURI) {
     qmlRegisterType<Empty>(argURI, 1, 0, "Empty");
