@@ -21,13 +21,10 @@ PrivateBasic{
        ListView{
            model: idModel
            id : idListView
-           onCurrentIndexChanged:{
-               console.log("xxxx")
-           }
            delegate: Rectangle{
                width: parent.width
                height: 32
-               border.color: "black"
+               border.color:  idListView.currentIndex === index ? "blue" : "black"
                border.width: 3 ;
                Text {
                    anchors.centerIn: parent
