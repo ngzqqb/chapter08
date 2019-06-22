@@ -32,7 +32,7 @@ PrivateBasic{
             }
         }
         onSelectionChanged: {
-             forceSelectCurrentIndex();
+            forceSelectCurrentIndex();
         }
         Component.onCompleted: {
             forceSelectCurrentIndex();
@@ -51,7 +51,7 @@ PrivateBasic{
                                      ItemSelectionModel.ClearAndSelect );
             }
             function viewAtCurrentIndex(){
-                 positionViewAtIndex(currentIndex ,ListView.Contain)
+                positionViewAtIndex(currentIndex ,ListView.Contain)
             }
             Keys.onUpPressed: {
                 event.accepted = false;
@@ -74,21 +74,21 @@ PrivateBasic{
 
                 onClicked: {
                     if(mouse.modifiers & Qt.ShiftModifier){
-                          if( idListView.currentIndex === index ){
-                              idBackGround.selectThis();
-                              return;
-                          }
-                          if( index < idListView.currentIndex ){
-                              idSelectModel.selectRangePair(idModel.index(index,0) ,
-                                                            idModel.index(idListView.currentIndex,0) ,
-                                                            ItemSelectionModel.ClearAndSelect );
-                          }else{
-                              idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
-                                                            idModel.index(index,0) ,
-                                                            ItemSelectionModel.ClearAndSelect );
-                          }
+                        if( idListView.currentIndex === index ){
+                            idBackGround.selectThis();
+                            return;
+                        }
+                        if( index < idListView.currentIndex ){
+                            idSelectModel.selectRangePair(idModel.index(index,0) ,
+                                                          idModel.index(idListView.currentIndex,0) ,
+                                                          ItemSelectionModel.ClearAndSelect );
+                        }else{
+                            idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
+                                                          idModel.index(index,0) ,
+                                                          ItemSelectionModel.ClearAndSelect );
+                        }
                     }else if(mouse.modifiers & Qt.ControlModifier ){
-                          idBackGround.addOrRemoveSelect();
+                        idBackGround.addOrRemoveSelect();
                     }else {
                         idListView.currentIndex = index;
                         idBackGround.selectThis();
@@ -240,7 +240,7 @@ PrivateBasic{
                         idMaskRectangle.height = Math.abs( mouse.y - idMaskRectangle.dragStargY )
                         idMaskRectangle.width = Math.abs( mouse.x - idMaskRectangle.dragStartX )
                     }
-               }
+                }
                 onReleased: {
                     mouse.accepted = false
                     isPressedAndMove = false;
