@@ -64,12 +64,7 @@ PrivateBasic{
             Rectangle{
                 id : idMaskRectangle
                 color: Qt.rgba(0.8,0.2,0.2,0.5)
-                visible: true;
-                z : 10
-                x : 10
-                y : 10
-                width:200
-                height: 200
+                visible: false
                 property real dragStartX: 1
                 property real dragStargY: 1
             }
