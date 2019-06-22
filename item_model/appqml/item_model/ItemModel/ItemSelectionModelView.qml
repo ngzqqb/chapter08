@@ -61,6 +61,18 @@ PrivateBasic{
                 event.accepted = false;
                 Qt.callLater(viewAtCurrentIndex)
             }
+            Rectangle{
+                id : idMaskRectangle
+                color: Qt.rgba(0.8,0.2,0.2,0.5)
+                visible: true;
+                z : 10
+                x : 10
+                y : 10
+                width:200
+                height: 200
+                property real dragStartX: 1
+                property real dragStargY: 1
+            }
             delegate  : MouseArea{
                 width: parent.width
                 height: 32
@@ -131,6 +143,41 @@ PrivateBasic{
                 }
             }
             model: idModel
+
+            MouseArea{
+                anchors.fill: parent
+                propagateComposedEvents:true
+                acceptedButtons: Qt.LeftButton
+                Rectangle{
+                    id : idNeverUsedRectangle
+                    visible: false
+                }
+                drag.target: idNeverUsedRectangle
+                drag.axis : Drag.XAndYAxis
+                property bool isPressedAndMove: false
+                onPositionChanged: {
+                    mouse.accepted = false
+                    if( pressed ){
+                        if(isPressedAndMove===false){
+                            isPressedAndMove = true;
+                            idMaskRectangle.dragStargY=mouse.y
+                            idMaskRectangle.dragStartX=mouse.x
+                            idMaskRectangle.visible=true
+                        }
+                        idMaskRectangle.x = Math.min( mouse.x , idMaskRectangle.dragStartX)
+                        idMaskRectangle.y = Math.min( mouse.y ,idMaskRectangle.dragStargY )
+                        idMaskRectangle.height = Math.abs( mouse.y - idMaskRectangle.dragStargY )
+                        idMaskRectangle.width = Math.abs( mouse.x - idMaskRectangle.dragStartX )
+                    }
+               }
+                onReleased: {
+                    mouse.accepted = false
+                    isPressedAndMove = false;
+                    idMaskRectangle.visible=false
+                }
+                id : idDragMouseArea
+            }
+
         }
 
     }
