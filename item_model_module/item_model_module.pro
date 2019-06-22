@@ -13,20 +13,11 @@ HEADERS += $$PWD/Empty.hpp
 SOURCES += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.cpp
 HEADERS += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.hpp
 
-SOURCES += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.cpp
-HEADERS += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.hpp
-
-SOURCES += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.cpp
-HEADERS += $$PWD/ConcatenateTablesProxyModel/ConcatenateTablesProxyModel.hpp
-
 SOURCES += $$PWD/TransposeProxyModel/TransposeProxyModel.cpp
 HEADERS += $$PWD/TransposeProxyModel/TransposeProxyModel.hpp
 
 SOURCES += $$PWD/SortFilterProxyModel/SortFilterProxyModel.cpp
 HEADERS += $$PWD/SortFilterProxyModel/SortFilterProxyModel.hpp
-
-SOURCES += $$PWD/ItemSelectionModel/ItemSelectionModel.cpp
-HEADERS += $$PWD/ItemSelectionModel/ItemSelectionModel.hpp
 
 SOURCES += $$PWD/IdentityProxyModel/IdentityProxyModel.cpp
 HEADERS += $$PWD/IdentityProxyModel/IdentityProxyModel.hpp
