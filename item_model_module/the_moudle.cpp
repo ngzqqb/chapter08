@@ -20,6 +20,7 @@ void sstd::TheMoudle::registerTypes(const char * argURI) {
     qmlRegisterType<KnowListModel>(argURI, 1, 0, "KnowListModel");
     qmlRegisterType<KnowTableModel>(argURI,1,0,"KnowTableModel");
     qmlRegisterType<KnowSortFilterModel>(argURI,1,0,"KnowSortFilterModel");
+    qmlRegisterType<ItemSelectionModel>(argURI, 1, 0, "ItemSelectionModel");
     qmlProtectModule(argURI, 1);
 }
 

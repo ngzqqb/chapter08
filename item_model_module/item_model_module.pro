@@ -31,9 +31,11 @@ HEADERS += $$PWD/KnowTableModel/KnowTableModel.hpp
 SOURCES += $$PWD/KnowSortFilterModel/KnowSortFilterModel.cpp
 HEADERS += $$PWD/KnowSortFilterModel/KnowSortFilterModel.hpp
 
+SOURCES += $$PWD/ItemSelectionModel/ItemSelectionModel.cpp
+HEADERS += $$PWD/ItemSelectionModel/ItemSelectionModel.hpp
+
 include($$PWD/../../sstd_library/sstd_library.pri)
 include($$PWD/../../sstd_qt_qml_quick_library/sstd_qt_qml_quick_library.pri)
-
 
 isEmpty(QMAKE_POST_LINK){
     QMAKE_POST_LINK += $${SSTD_LIBRARY_OUTPUT_PATH}/sstd_copy_qml $${PWD} $${PWD} skip
