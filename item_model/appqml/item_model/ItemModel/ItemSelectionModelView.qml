@@ -157,6 +157,8 @@ PrivateBasic{
                 drag.target: idNeverUsedRectangle
                 drag.axis : Drag.XAndYAxis
                 property bool isPressedAndMove: false ;
+                property bool isPressedAndMoveByShift: false;
+                property int  pressedAndMoveStartIndex : 0 ;
                 Timer{
                     interval : 100
                     repeat : true
@@ -200,14 +202,15 @@ PrivateBasic{
                             varMouseIndex = idListView.count > 1?(idListView.count-1):0;
                         }
                     }
-                    if(varMouseIndex>idListView.currentIndex){
-                        idSelectModel.selectRangePair(idModel.index(idListView.currentIndex,0) ,
+                    var varSelectAlg = isPressedAndMoveByShift ? ItemSelectionModel.Select:ItemSelectionModel.ClearAndSelect;
+                    if(varMouseIndex>pressedAndMoveStartIndex){
+                        idSelectModel.selectRangePair(idModel.index(pressedAndMoveStartIndex,0) ,
                                                       idModel.index(varMouseIndex,0) ,
-                                                      ItemSelectionModel.ClearAndSelect );
+                                                      varSelectAlg );
                     }else{
                         idSelectModel.selectRangePair(idModel.index(varMouseIndex,0) ,
-                                                      idModel.index(idListView.currentIndex,0),
-                                                      ItemSelectionModel.ClearAndSelect );
+                                                      idModel.index(pressedAndMoveStartIndex,0),
+                                                      varSelectAlg );
                     }
                 }
 
@@ -222,12 +225,18 @@ PrivateBasic{
                             varMouseIndex = idListView.count > 1?(idListView.count-1):0;
                         }
                     }
-                    idListView.currentIndex = varMouseIndex;
+                    pressedAndMoveStartIndex = varMouseIndex;
+                    if(isPressedAndMoveByShift){
+                        idSelectModel.select( idModel.index(pressedAndMoveStartIndex,0) , ItemSelectionModel.Select );
+                    }else{
+                        idListView.currentIndex = varMouseIndex;
+                    }
                 }
 
                 onPositionChanged: {
                     mouse.accepted = false
                     if( pressed ){
+                        isPressedAndMoveByShift = mouse.modifiers & Qt.ShiftModifier;
                         if(isPressedAndMove===false){
                             isPressedAndMove = true;
                             idMaskRectangle.dragStargY=mouse.y
@@ -244,6 +253,7 @@ PrivateBasic{
                 onReleased: {
                     mouse.accepted = false
                     isPressedAndMove = false;
+                    isPressedAndMoveByShift=false;
                     idMaskRectangle.visible=false;
                 }
                 id : idDragMouseArea
