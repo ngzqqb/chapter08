@@ -101,9 +101,11 @@ PrivateBasic{
                     property bool isSelect : checkIsSelect() ;
 
                     function addOrRemoveSelect(){
-                        if(checkIsSelect() && (idListView.currentIndex !== index) ){/*currentIndex永远被选中*/
-                            idSelectModel.select(idModel.index(index,0) ,
-                                                 ItemSelectionModel.Deselect );
+                        if(checkIsSelect()){
+                            if(idListView.currentIndex !== index){/*currentIndex永远被选中*/
+                                idSelectModel.select(idModel.index(index,0) ,
+                                                     ItemSelectionModel.Deselect );
+                            }
                         }else{
                             idSelectModel.select(idModel.index(index,0) ,
                                                  ItemSelectionModel.Select );
