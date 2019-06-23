@@ -120,7 +120,9 @@ PrivateBasic{
                         return idSelectModel.isSelected(varIndex)
                     }
 
-                    Connections{/*被动查询当前元素选择状态是否改变*/
+                    Connections{/*被动查询当前元素选择状态是否改变，
+这里假设只有可见元素才存在，
+把displayMarginBeginning，displayMarginEnd缓存调小*/
                         target: idSelectModel
                         onSelectionChanged:{
                             idBackGround.isSelect = idBackGround.checkIsSelect() ;
