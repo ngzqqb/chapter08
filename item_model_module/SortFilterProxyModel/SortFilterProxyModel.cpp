@@ -22,6 +22,10 @@ namespace sstd {
         Super::sort(arg);
     }
 
+    bool The::filterAcceptsRow(int sourceRow, const QModelIndex & ) const {
+        return sourceRow!=3;
+    }
+
     bool The::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const {
         if (thisLessThanFunction) {
             using T = QJSValue;

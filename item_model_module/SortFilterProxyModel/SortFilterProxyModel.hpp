@@ -23,6 +23,7 @@ namespace sstd {
         Q_SIGNAL void theModelChanged();
     protected:
         bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     private:
         std::optional< QJSValue > thisLessThanFunction;
         using Super = QSortFilterProxyModel;
