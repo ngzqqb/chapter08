@@ -165,6 +165,9 @@ PrivateBasic{
                     running : idDragMouseArea.isPressedAndMove
                     triggeredOnStart :false
                     onTriggered: {
+                        if(!isPressedAndMove){
+                            return;
+                        }
                         var varMouseY = idDragMouseArea.mouseY;
                         idDragMouseArea.selectByArea();
                         if( varMouseY < 0 ){
