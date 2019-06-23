@@ -15,7 +15,7 @@ PrivateBasic{
     ItemSelectionModel{
         model: idModel
         id : idSelectModel
-        property bool isForceSelectCurrentIndex: false
+        property bool isForceSelectCurrentIndex: false/*防止递归调用*/
         function forceSelectCurrentIndex(){
             if(isForceSelectCurrentIndex){
                 return;
@@ -53,26 +53,26 @@ PrivateBasic{
             function viewAtCurrentIndex(){
                 positionViewAtIndex(currentIndex ,ListView.Contain)
             }
-            Keys.onUpPressed: {
+            Keys.onUpPressed: {/*使用键盘导航时强制currentIndex可视*/
                 event.accepted = false;
                 Qt.callLater(viewAtCurrentIndex)
             }
-            Keys.onDownPressed: {
+            Keys.onDownPressed: {/*使用键盘导航时强制currentIndex可视*/
                 event.accepted = false;
                 Qt.callLater(viewAtCurrentIndex)
             }
-            Rectangle{
+            Rectangle{/*鼠标框选时显示的可见元素*/
                 id : idMaskRectangle
                 color: Qt.rgba(0.8,0.2,0.2,0.5)
                 visible: false
                 property real dragStartX: 1
                 property real dragStargY: 1
             }
-            delegate  : MouseArea{
+            delegate  : MouseArea{/*代理元素*/
                 width: parent.width
                 height: 32
 
-                onClicked: {
+                onClicked: {/*Shift + Control + 单击 */
                     if(mouse.modifiers & Qt.ShiftModifier){
                         if( idListView.currentIndex === index ){
                             idBackGround.selectThis();
@@ -120,7 +120,7 @@ PrivateBasic{
                         return idSelectModel.isSelected(varIndex)
                     }
 
-                    Connections{
+                    Connections{/*被动查询当前元素选择状态是否改变*/
                         target: idSelectModel
                         onSelectionChanged:{
                             idBackGround.isSelect = idBackGround.checkIsSelect() ;
@@ -146,19 +146,19 @@ PrivateBasic{
 
             model: idModel
 
-            MouseArea{
+            MouseArea{/*框选鼠标事件发起区域*/
                 anchors.fill: parent
                 propagateComposedEvents:true
                 acceptedButtons: Qt.LeftButton
-                Rectangle{
+                Rectangle{/*此对象仅仅为了在框选时触发拖动，防止鼠标事件传递给delegate*/
                     id : idNeverUsedRectangle
                     visible: false
                 }
                 drag.target: idNeverUsedRectangle
                 drag.axis : Drag.XAndYAxis
-                property bool isPressedAndMove: false ;
-                property bool isPressedAndMoveByShift: false;
-                property int  pressedAndMoveStartIndex : 0 ;
+                property bool isPressedAndMove: false /*是否处于框选状态*/;
+                property bool isPressedAndMoveByShift: false/*框选时是否按下Shift*/;
+                property int  pressedAndMoveStartIndex : 0 /*触发框选状态时的index*/;
                 Timer{
                     interval : 100
                     repeat : true
