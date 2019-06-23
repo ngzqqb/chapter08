@@ -21,6 +21,14 @@ PrivateBasic{
         TableView{
             id : idTableView
             model: idSortModel ;
+            Timer{
+                interval: 1500;
+                running: true;
+                repeat: true
+                onTriggered: idTableView.model === idSortModel?
+                                 idTableView.model=idModel :
+                                 idTableView.model=idSortModel ;
+            }
             Component.onCompleted: {
                 Qt.callLater(function(){
                     idSortModel.lessThanFunction = function(argLR,argLC,argRR,argRC){

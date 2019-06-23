@@ -23,6 +23,14 @@ PrivateBasic{
         TableView{
             id : idTableView
             model: idTransposeProxyModel;
+            Timer{
+                interval: 1500;
+                running: true;
+                repeat: true
+                onTriggered: idTableView.model === idTransposeProxyModel?
+                                 idTableView.model=idTableModel :
+                                 idTableView.model=idTransposeProxyModel ;
+            }
             columnWidthProvider:function(){
                 return width/columns ;
             }
